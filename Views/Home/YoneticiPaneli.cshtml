@@ -1,0 +1,34 @@
+@model List<OkulSistemi.Models.Kullanici>
+
+<div class="container mt-5">
+    <h2 class="mb-4">👑 Yönetici Paneli - Tüm Kullanıcılar
+        <div class="alert alert-info shadow-sm">
+        <strong>Sistem Özeti:</strong> 
+        Toplam Öğrenci: <span class="badge bg-dark">@Model.Count(x => x.Rol == "Öğrenci")</span> | 
+        Toplam Öğretmen: <span class="badge bg-dark">@Model.Count(x => x.Rol == "Öğretmen")</span>
+        </div>
+    </h2>
+    <table class="table table-striped border shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Ad Soyad</th>
+                <th>E-posta</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model) {
+                <tr>
+                    <td>@user.AdSoyad</td>
+                    <td>
+                            @user.AdSoyad 
+                            @if (user.Rol == "Öğrenci") { <span>🎓</span> }
+                            else if (user.Rol == "Öğretmen") { <span>👨‍🏫</span> }
+                            else if (user.Rol == "Yönetici") { <span>⭐</span> }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Home/Kayit" class="btn btn-secondary">Yeni Kayıt Ekle</a>
+</div>
